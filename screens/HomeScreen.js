@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import styles from '../styles/HomeScreen.styles';
+import ToDoListItem from '../components/ToDoListItem';
 
 const dummyLists = [
   { id: '1', title: 'Groceries' },
@@ -10,13 +11,13 @@ const dummyLists = [
 
 function HomeScreen({ navigation }) {
     const renderItem = ({ item }) => (
-        <TouchableOpacity
-            style={styles.listItem}
+       <ToDoListItem    
+            title={item.title}
             onPress={() => navigation.navigate('ToDoList', { title: item.title })}
-            >
-                <Text style={styles.listTitle}>{item.title}</Text>
-            </TouchableOpacity>
-    );
+        />
+            );
+
+    
 
     return (
         <View style={styles.container}>
