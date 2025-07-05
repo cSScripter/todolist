@@ -13,18 +13,22 @@ function ToDoListScreen({ route }) {
 
     console.log('todos', todos);
 
-    function toggleToDo(id) {
+    function toggleToDo(id) { 
         setTodos((prevTodos) =>
-        prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            prevTodos.map((todo) =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo 
     )
   );
  }
+    function deleteToDo(id) {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  }
     const renderItem = ({ item }) => (
         <ToDoItem
             title={item.title}
             completed={item.completed}
             onToggle={() => toggleToDo(item.id)} 
+            onDelete={() => deleteToDo(item.id)}
             />
     );
 
