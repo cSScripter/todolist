@@ -6,11 +6,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 function ToDoListScreen({ route }) {
     const { title } = route.params; //title passed from navigation
-    const [todos, setTodos] = useState([
-    { id: '1', title: 'Buy milk', completed: false },
-    { id: '2', title: 'Walk the dog', completed: false },
-    { id: '3', title: 'Read a book', completed: true },
-    ]);
+    const [todos, setTodos] = useState([]);
 
     //added state for todo input
     const [newToDoTitle, setNewToDoTitle] = useState('');
