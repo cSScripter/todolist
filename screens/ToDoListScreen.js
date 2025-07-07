@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import ToDoItem from '../components/ToDoItem';
 import styles from '../styles/ToDoListScreen.styles';
-import { TextInput } from 'react-native-gesture-handler';
+import CustomInputWithButton from '../components/CustomInputWithButton';
 
 function ToDoListScreen({ route }) {
     const { title } = route.params; //title passed from navigation
@@ -50,19 +50,13 @@ function ToDoListScreen({ route }) {
     return (
         <View style={styles.container}>
             <Text style={styles.listTitle}>{title}</Text>
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.textInput}
-                     placeholder="Add new to-do"
-                     value={newToDoTitle}
-                    onChangeText={setNewToDoTitle}
-                    onSubmitEditing={addToDo}
-                    returnKeyType="done" 
-                    />
-        <TouchableOpacity style={styles.addButton} onPress={addToDo}>
-            <Text style={styles.addButtonText}>Add</Text>
-       </TouchableOpacity>
-            </View>
+            <CustomInputWithButton
+             value={newToDoTitle}
+             onChangeText={setNewToDoTitle}
+             placeholder="Add new to-do"
+             onSubmit={addToDo}
+             />
+    
             
             <FlatList
                 data={todos}
