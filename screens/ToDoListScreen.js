@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text } from 'react-native';
 import ToDoItem from '../components/ToDoItem';
 import styles from '../styles/ToDoListScreen.styles';
 import CustomInputWithButton from '../components/CustomInputWithButton';
+import DraggableFlatList from 'react-native-draggable-flatlist';
 
 function ToDoListScreen({ route }) {
     const { title } = route.params; //title passed from navigation
@@ -37,12 +38,13 @@ function ToDoListScreen({ route }) {
     setNewToDoTitle('');                                // clear input field
   };
 
-    const renderItem = ({ item }) => (
+    const renderItem = ({ item, drag, isActive }) => (
         <ToDoItem
             title={item.title}
             completed={item.completed}
             onToggle={() => toggleToDo(item.id)} 
-            onDelete={() => deleteToDo(item.id)}
+            onLongPress={drag}
+            isActive={isActive}
             />
     );
 
@@ -59,25 +61,14 @@ function ToDoListScreen({ route }) {
              />
     
             
-            <FlatList
+            <DraggableFlatList 
                 data={todos}
                 keyExtractor={(item) => item.id}
-                renderItem={renderItem} 
+                onDragEnd={({data}) => setTodos(data)}
+                renderItem={renderItem}
                 />
         </View>
     );
 }
 
 export default ToDoListScreen;
-
-
-// import React from 'react';
-// import { View, Text } from 'react-native';
-
-// export default function ToDoListScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Hello from ToDoListScreen!</Text>
-//     </View>
-//   );
-// }

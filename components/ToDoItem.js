@@ -1,19 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Swipeable } from 'react-native-gesture-handler';
+import { Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/ToDoItem.styles';
-import DeleteAction from './DeleteAction';
 
-function ToDoItem({ title, completed, onToggle, onDelete }) {
-    //function to render delete button on swipe
-    const renderRightActions = () => <DeleteAction onDelete={onDelete} />;
-    
+
+function ToDoItem({ title, completed, onToggle, onDelete, onLongPress, isActive }) {
+
     return (
-        <Swipeable renderRightActions={renderRightActions}>
-        <TouchableOpacity style={styles.itemContainer} onPress={onToggle}>
+        <TouchableOpacity style={styles.itemContainer} onPress={onToggle} onLongPress={onLongPress}>
             <Text style={[styles.itemText, completed && styles.completedText]}>{title}</Text>
         </TouchableOpacity>
-        </Swipeable>
     );
 }
 
