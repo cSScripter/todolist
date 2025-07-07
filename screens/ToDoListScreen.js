@@ -53,8 +53,9 @@ function ToDoListScreen({ route }) {
             <CustomInputWithButton
              value={newToDoTitle}
              onChangeText={setNewToDoTitle}
-             placeholder="Add new to-do"
+             placeholder="Add new"
              onSubmit={addToDo}
+             buttonText='+'
              />
     
             
