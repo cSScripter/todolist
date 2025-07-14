@@ -42,9 +42,11 @@ function ToDoListScreen({ route }) {
         <ToDoItem
             title={item.title}
             completed={item.completed}
-            onToggle={() => toggleToDo(item.id)} 
+            onToggle={() => toggleToDo(item.id)}
+            onDelete={() => deleteToDo(item.id)}   
             onLongPress={drag}
             isActive={isActive}
+            showTrash={true} 
             />
     );
 

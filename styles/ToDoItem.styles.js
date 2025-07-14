@@ -15,5 +15,18 @@ export default StyleSheet.create({
     textDecorationLine: 'line-through',
     color: '#888',
   },
+  rowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+    trashButton: {
+    marginLeft: 10,
+    padding: 5,
+  },
+  trashIcon: {
+    color: 'red',
+    fontSize: 18,
+  },
 
 });
