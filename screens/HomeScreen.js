@@ -24,10 +24,15 @@ function HomeScreen({ navigation }) {
         id: Date.now().toString(),
         title: newListTitle.trim(),
     };
+    
 
     setLists(prevLists => [newList, ...prevLists]);
 
     setNewListTitle('');
+    };
+
+    const deleteList = (id) => {
+    setLists(prevLists => prevLists.filter(list => list.id !== id));
     };
 
 
@@ -37,6 +42,8 @@ function HomeScreen({ navigation }) {
        <ToDoListItem    
             title={item.title}
             onPress={() => navigation.navigate('ToDoList', { title: item.title })}
+            onDelete={() => deleteList(item.id)}      // <-- pass delete callback
+           showTrash={true}  
         />
             );
 

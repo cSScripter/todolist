@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    marginTop: 20,
+    marginTop: 10,
+    alignItems: 'stretch',
   },
   listItem: {
     backgroundColor: '#e6e6fa',

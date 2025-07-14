@@ -11,4 +11,17 @@ export default StyleSheet.create({
     fontSize: 18,
     color: '#333',
   },
+    trashButton: {
+    marginLeft: 10,
+    padding: 5,
+  },
+  trashIcon: {
+    color: 'red',
+    fontSize: 18,
+  },
+    rowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });
