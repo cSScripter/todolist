@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList } from 'react-native';
 import styles from '../styles/HomeScreen.styles';
 import ToDoListItem from '../components/ToDoListItem';
 import CustomInputWithButton from '../components/CustomInputWithButton';
+import { saveLists, loadLists } from '../storage';
 
 
 // const dummyLists = [
@@ -17,12 +18,27 @@ function HomeScreen({ navigation }) {
 
     const [newListTitle, setNewListTitle] = useState('');
 
+    //load saved list on mount
+    useEffect(() => {
+        const load = async () => {
+            const savedLists = await loadLists();
+            setLists(savedLists);
+        };
+            load();
+    }, []);
+
+    //save list when changed
+    useEffect(() => {
+        saveLists(lists);
+    }, [lists]);
+
     const addList = () => {
         if (!newListTitle.trim()) return;
 
      const newList = {
         id: Date.now().toString(),
         title: newListTitle.trim(),
+        items: [],
     };
     
 
@@ -41,7 +57,9 @@ function HomeScreen({ navigation }) {
     const renderItem = ({ item }) => (
        <ToDoListItem    
             title={item.title}
-            onPress={() => navigation.navigate('ToDoList', { title: item.title })}
+            onPress={() =>
+                     navigation.navigate('ToDoList', { listId: item.id })
+            }
             onDelete={() => deleteList(item.id)}      // <-- pass delete callback
            showTrash={true}  
         />
